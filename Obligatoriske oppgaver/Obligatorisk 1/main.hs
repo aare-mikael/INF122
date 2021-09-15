@@ -51,7 +51,6 @@ locate [] ys = []
 locate xs [] = []
 
 
-
 {-
 -- Oppgave 3 ----------------------------------------------------
 translate :: String -> String 
