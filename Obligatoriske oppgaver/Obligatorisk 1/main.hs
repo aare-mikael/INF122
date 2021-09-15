@@ -45,11 +45,11 @@ isPrefix (x:xs) (y:ys)
         | otherwise     = False
 
 
-
 -- Oppgave 2 ----------------------------------------------------
 locate :: String -> String -> [(Int,Int)]
 locate [] ys = []
 locate xs [] = []
+
 
 
 {-
