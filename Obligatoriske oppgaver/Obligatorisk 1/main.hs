@@ -46,9 +46,32 @@ isPrefix (x:xs) (y:ys)
 
 
 -- Oppgave 2 ----------------------------------------------------
-locate :: String -> String -> [(Int,Int)]
+-- locate :: String -> String -> [(Int,Int)]
+
+position xs ys i j = isPrefix xs ys : position xs (tail ys) (i + 1) 
+        if      (isPrefix xs ys == True) 
+        then    [(i, length xs)] 
+        else    pure ()
+
+
+
+
+
+
+
+
 locate [] ys = []
 locate xs [] = []
+locate xs ys = position xs ys 0
+
+
+
+
+
+        -- | x == y        = locate xs ys
+        -- | otherwise     = []
+
+
 
 
 {-
