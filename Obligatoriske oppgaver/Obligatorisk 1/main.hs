@@ -44,52 +44,60 @@ isPrefix (x:xs) (y:ys)
         | x == y        = isPrefix xs ys
         | otherwise     = False
 
+isPrefix2 :: String -> String -> Bool
+isPrefix2 xs ys = take (length xs) ys == xs
+-- These two functions, isPrefix and isPrefix2 do the same thing, one is just easier to understand than the other.
 
 -- Oppgave 2 ----------------------------------------------------
--- locate :: String -> String -> [(Int,Int)]
+locate :: String -> String -> [(Int,Int)]
+locate xs ys = idx xs ys [] 0
+        where
+                idx xs ys acc n 
+                | null ys = acc 
+                | isPrefix xs ys = acc ++ [(n, n + length xs)] ++ idx xs (tail ys) acc (n + 1) 
+                | otherwise = idx xs (tail ys) acc (n + 1)
 
-position xs ys i j = isPrefix xs ys : position xs (tail ys) (i + 1) 
-        if      (isPrefix xs ys == True) 
-        then    [(i, length xs)] 
-        else    pure ()
-
-
-
-
-
-
-
-
-locate [] ys = []
-locate xs [] = []
-locate xs ys = position xs ys 0
-
-
-
-
-
-        -- | x == y        = locate xs ys
-        -- | otherwise     = []
-
-
-
-
-{-
 -- Oppgave 3 ----------------------------------------------------
 translate :: String -> String 
-translate = undefined 
-
+translate xs = traverse dictionary
+        where traverse dictionary
+                | null dictionary || null xs = []
+                | any (isPrefix xs) (snd(head dictionary)) = fst (head dictionary)
+                | otherwise = traverse (tail dictionary)
 
 -- Oppgave 4 ----------------------------------------------------
 replace :: [(Int,Int)] -> String -> String 
-replace = undefined
+replace xs [] = []
+replace [] ys = ys
+replace xs ys = helper (qsort xs) ys
+        where helper xs ys
+                | null (translate (substring fhxs shxs ys)) = substring 0 fhxs ys ++ ast (shxs - fhxs) ++ replace (tail xs) (substring shxs (length ys) ys)
+                | otherwise = substring 0 fhxs ys ++ translate (substring fhxs shxs ys) ++ replace (tail xs) (substring shxs (length ys) ys)
+                where
+                        fhxs = fst(head xs)
+                        shxs = snd(head xs)
+                        substring i j xs = take (j - i) (drop i xs)
+                        ast xs = concat (replicate xs "*")
+
+qsort :: [(Int,Int)] -> [(Int,Int)]
+qsort [] = []
+qsort (x:xs) = qsort larger ++ [x] ++ qsort smaller
+        where
+                smaller = [a | a <- xs, a <= x]
+                larger = [b | b <- xs, b > x]
 
 
 -- Oppgave 5 ----------------------------------------------------
 toNewspeak :: String -> String 
-toNewspeak = undefined
+toNewspeak xs = replace (idcs xs (concatMap snd dictionary)) xs
 
+idcs :: String -> [String] -> [(Int,Int)]
+idcs xs dictionary =
+        if null dictionary
+                then []
+                else locate (head dictionary) xs ++ idcs (tail dictionary)
 
+{-
 -- Oppgave 6 ----------------------------------------------------
 analytics :: String -> String -> Int 
 analytics = undefined
