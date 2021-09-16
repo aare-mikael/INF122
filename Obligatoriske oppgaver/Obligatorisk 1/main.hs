@@ -37,23 +37,23 @@ dictionary = [
 
 
 -- Oppgave 1 ----------------------------------------------------
-isPrefix :: String -> String -> Bool 
-isPrefix [] ys = True 
-isPrefix xs [] = False 
-isPrefix (x:xs) (y:ys)
-        | x == y        = isPrefix xs ys
+isPrefix :: String -> String -> Bool
+isPrefix xs ys = take (length xs) ys == xs
+
+isPrefix2 :: String -> String -> Bool 
+isPrefix2 [] ys = True 
+isPrefix2 xs [] = False 
+isPrefix2 (x:xs) (y:ys)
+        | x == y        = isPrefix2 xs ys
         | otherwise     = False
 
-isPrefix2 :: String -> String -> Bool
-isPrefix2 xs ys = take (length xs) ys == xs
 -- These two functions, isPrefix and isPrefix2 do the same thing, one is just easier to understand than the other.
 
 -- Oppgave 2 ----------------------------------------------------
 locate :: String -> String -> [(Int,Int)]
 locate xs ys = idx xs ys [] 0
-        where
-                idx xs ys acc n 
-                | null ys = acc 
+        where idx xs ys acc n 
+                | null ys = acc
                 | isPrefix xs ys = acc ++ [(n, n + length xs)] ++ idx xs (tail ys) acc (n + 1) 
                 | otherwise = idx xs (tail ys) acc (n + 1)
 
@@ -88,14 +88,14 @@ qsort (x:xs) = qsort larger ++ [x] ++ qsort smaller
 
 
 -- Oppgave 5 ----------------------------------------------------
-toNewspeak :: String -> String 
-toNewspeak xs = replace (idcs xs (concatMap snd dictionary)) xs
+-- toNewspeak :: String -> String 
+-- toNewspeak xs = replace (idcs xs (concatMap snd dictionary)) xs
 
-idcs :: String -> [String] -> [(Int,Int)]
-idcs xs dictionary =
-        if null dictionary
-                then []
-                else locate (head dictionary) xs ++ idcs (tail dictionary)
+-- idcs :: String -> [String] -> [(Int,Int)]
+-- idcs xs dictionary =
+--         if null dictionary
+--                 then []
+--                 else locate (head dictionary) xs ++ idcs (tail dictionary)
 
 {-
 -- Oppgave 6 ----------------------------------------------------
