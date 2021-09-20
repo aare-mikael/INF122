@@ -67,29 +67,16 @@ locate xs ys = position xs ys [] 0
 
 -- Oppgave 3 ----------------------------------------------------
 translate :: String -> String 
-translate xs = traverse dictionary
-        where traverse dictionary
-                | null dictionary || null xs = []
-                | any (isPrefix xs) (snd(head dictionary)) = fst (head dictionary)
-                | otherwise = traverse (tail dictionary)
+translate xs = lookthrough xs dictionary 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+lookthrough [] dictionary = []
+lookthrough xs [] = []
+lookthrough xs dictionary = 
+        if any (\x -> length x == length xs && isPrefix x xs) (snd(head dictionary))
+        then
+                fst (head dictionary)
+        else
+                lookthrough xs (tail dictionary)
 
 
 {-
