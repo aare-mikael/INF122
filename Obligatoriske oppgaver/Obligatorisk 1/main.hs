@@ -50,12 +50,20 @@ isPrefix2 (x:xs) (y:ys)
 -- These two functions, isPrefix and isPrefix2 do the same thing, one is just easier to understand than the other.
 
 -- Oppgave 2 ----------------------------------------------------
-locate :: String -> String -> [(Int,Int)]
-locate xs ys = idx xs ys [] 0
-        where idx xs ys acc n 
-                | null ys = acc
-                | isPrefix xs ys = acc ++ [(n, n + length xs)] ++ idx xs (tail ys) acc (n + 1) 
-                | otherwise = idx xs (tail ys) acc (n + 1)
+position :: String -> [Char] -> [(Int, Int)] -> Int -> [(Int, Int)]
+position xs [] exs n = exs
+position xs ys exs n = 
+        if isPrefix xs ys
+        then
+                exs ++ [(n, n + length xs)] ++ position xs (tail ys) exs (n + 1)
+        else 
+                position xs (tail ys) exs (n + 1)
+
+locate :: String -> String -> [(Int, Int)]
+locate [] ys = [(0,length ys)]
+locate xs [] = [(length xs,0)]
+locate xs ys = position xs ys [] 0
+
 
 -- Oppgave 3 ----------------------------------------------------
 translate :: String -> String 
@@ -65,6 +73,26 @@ translate xs = traverse dictionary
                 | any (isPrefix xs) (snd(head dictionary)) = fst (head dictionary)
                 | otherwise = traverse (tail dictionary)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{-
 -- Oppgave 4 ----------------------------------------------------
 replace :: [(Int,Int)] -> String -> String 
 replace xs [] = []
@@ -97,7 +125,7 @@ qsort (x:xs) = qsort larger ++ [x] ++ qsort smaller
 --                 then []
 --                 else locate (head dictionary) xs ++ idcs (tail dictionary)
 
-{-
+
 -- Oppgave 6 ----------------------------------------------------
 analytics :: String -> String -> Int 
 analytics = undefined
