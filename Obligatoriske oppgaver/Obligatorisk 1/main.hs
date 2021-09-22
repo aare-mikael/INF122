@@ -89,13 +89,6 @@ replace = undefined
 toNewspeak :: String -> String 
 toNewspeak = translate
 
-{- Keeping these 5 lines to make the code easier to understand
---         if any (\x -> length x == length xs && isPrefix x xs) (snd(head dictionary))
---         then
---                 lookthrough xs dictionary
---         else
---                 lookthrough xs (tail dictionary)
--}
 
 -- Oppgave 6 ----------------------------------------------------
 analytics :: String -> String -> Int 
