@@ -1,6 +1,5 @@
 -- Mikael Aare
 module Oblig1 where
-import Text.ParserCombinators.Parsec.Language (haskell)
 
 dictionary = [
         ("bb",["Big Brother"]),
