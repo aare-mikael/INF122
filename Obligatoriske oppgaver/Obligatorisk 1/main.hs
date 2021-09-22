@@ -1,5 +1,6 @@
 -- Mikael Aare
 module Oblig1 where
+import Text.ParserCombinators.Parsec.Language (haskell)
 
 dictionary = [
         ("bb",["Big Brother"]),
@@ -49,6 +50,7 @@ isPrefix2 (x:xs) (y:ys)
 
 -- These two functions, isPrefix and isPrefix2 do the same thing, one is just easier to understand than the other.
 
+
 -- Oppgave 2 ----------------------------------------------------
 position :: String -> [Char] -> [(Int, Int)] -> Int -> [(Int, Int)]
 position xs [] exs n = exs
@@ -79,46 +81,33 @@ lookthrough xs dictionary =
                 lookthrough xs (tail dictionary)
 
 
-{-
 -- Oppgave 4 ----------------------------------------------------
 replace :: [(Int,Int)] -> String -> String 
-replace xs [] = []
-replace [] ys = ys
-replace xs ys = helper (qsort xs) ys
-        where helper xs ys
-                | null (translate (substring fhxs shxs ys)) = substring 0 fhxs ys ++ ast (shxs - fhxs) ++ replace (tail xs) (substring shxs (length ys) ys)
-                | otherwise = substring 0 fhxs ys ++ translate (substring fhxs shxs ys) ++ replace (tail xs) (substring shxs (length ys) ys)
-                where
-                        fhxs = fst(head xs)
-                        shxs = snd(head xs)
-                        substring i j xs = take (j - i) (drop i xs)
-                        ast xs = concat (replicate xs "*")
-
-qsort :: [(Int,Int)] -> [(Int,Int)]
-qsort [] = []
-qsort (x:xs) = qsort larger ++ [x] ++ qsort smaller
-        where
-                smaller = [a | a <- xs, a <= x]
-                larger = [b | b <- xs, b > x]
+replace = undefined
 
 
 -- Oppgave 5 ----------------------------------------------------
--- toNewspeak :: String -> String 
--- toNewspeak xs = replace (idcs xs (concatMap snd dictionary)) xs
+toNewspeak :: String -> String 
+toNewspeak = translate
 
--- idcs :: String -> [String] -> [(Int,Int)]
--- idcs xs dictionary =
---         if null dictionary
---                 then []
---                 else locate (head dictionary) xs ++ idcs (tail dictionary)
-
+{- Keeping these 5 lines to make the code easier to understand
+--         if any (\x -> length x == length xs && isPrefix x xs) (snd(head dictionary))
+--         then
+--                 lookthrough xs dictionary
+--         else
+--                 lookthrough xs (tail dictionary)
+-}
 
 -- Oppgave 6 ----------------------------------------------------
 analytics :: String -> String -> Int 
-analytics = undefined
+analytics xs ys = 100 * length ys `div` length xs
 
 
 -- Oppgave 7 ----------------------------------------------------
 main :: String -> (String, Int)
-main = undefined
+main xs = (toNewspeak xs, analytics xs (toNewspeak xs))
+
+
+{-
+Author comment here; I tried for hours and hours, but could not fathom how I should go about doing task 4. The rest should be working just fine without it though.
 -}
