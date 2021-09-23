@@ -88,6 +88,7 @@ replace = undefined
 -- Oppgave 5 ----------------------------------------------------
 toNewspeak :: String -> String 
 toNewspeak = translate
+-- Doesn't cover the task at hand, but without a working replace-function it would be impossible anyways.
 
 
 -- Oppgave 6 ----------------------------------------------------
