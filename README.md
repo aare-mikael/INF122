@@ -1,7 +1,7 @@
 <h1 align="center">INF122</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/aare-mikael/INF122?colour=orange">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/aare-mikael/INF122?color=orange">
 
   <img alt="Repository size" src="https://img.shields.io/github/last-commit/aare-mikael/inf122">
 
