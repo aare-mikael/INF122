@@ -3,9 +3,9 @@
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/aare-mikael/INF122?color=orange">
 
-  <img alt="Repository size" src="https://img.shields.io/github/last-commit/aare-mikael/inf122">
+  <img alt="Repository size" src="https://img.shields.io/github/last-commit/aare-mikael/inf122?color=orange">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/aare-mikael/inf122">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/aare-mikael/inf122?color=orange">
 </p>
 
 
