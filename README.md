@@ -1,4 +1,4 @@
-# INF122
+<h1 align="center"># INF122</h1>
 This is one of my subjects in my 5th semester of Computer Engineering at Western Norway University of Applied Sciences
 
 I will update this every week as I get further along in the lectures
