@@ -20,5 +20,5 @@ If you found this repository, and it helped you with one (or more) of the tasks,
 <br/>
 
 <p align="center">
-Made by <a href="https://github.com/aare-mikael" target="_blank">Mikael</a>
+Made by <a href="https://www.linkedin.com/in/mikaelaare/" target="_blank">me</a>
 </p>
