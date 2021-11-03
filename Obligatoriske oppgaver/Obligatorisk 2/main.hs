@@ -72,7 +72,6 @@ playHanoi n board oldState steps = do
         threadDelay 1000000
         playHanoi n board oldState steps
       else do
-        -- let board = format n [[1..n],[],[]]
         let board = generate n
         clr
         playHanoi n board [generate n] 0
@@ -167,35 +166,6 @@ generate n = [[1..n],[],[]]
 
 -- Generates double array with n length in last index
 completed n = [[],[],[1..n]]
-
--- If you want to see the machine solve towers of hanoi for n rings, write showHanoi, and n rings when prompted. 
-showHanoi = do
-    n <- getDigit "Enter the amount of rings: "
-    printAllSteps n $ iterf (hanoi 0 1 2 n) [[1..n],[],[]]
-  where
-    printAllSteps _ [] = putStrLn ""
-    printAllSteps n (x:xs) = do
-        threadDelay 100000 --sleep for a hundred thousand microseconds, or one tenth of a second
-        clr
-        putStr (format n x)
-        printAllSteps n xs
-
-iterf [] x = [x]
-iterf (f:fs) x = x:iterf fs (f x)
-
-hanoi :: Int -> Int -> Int -> Int -> [[[t]] -> [[t]]]
-hanoi _ _ _ 0 = []
-hanoi s t d n = hanoi s d t (n - 1) ++ [move s d] ++ hanoi t s d (n - 1)
-
-getDigit :: String -> IO Int
-getDigit prompt = do
-    putStr prompt
-    s <- getLine
-    newline
-    if not (null s) && all isDigit s then return (read s)
-    else do
-        putStrLn "ERROR: Invalid number"
-        getDigit prompt
 
 newline :: IO ()
 newline = putChar '\n'
