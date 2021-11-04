@@ -1,7 +1,7 @@
 import Control.Concurrent
 import Data.Char
 
--- Main programme
+-- Main program
 main = showHanoi
 
 -- If you want to see the machine solve towers of hanoi for n rings. 
